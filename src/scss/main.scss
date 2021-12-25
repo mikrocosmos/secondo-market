@@ -1,0 +1,22 @@
+.content {
+	padding: 4rem;
+	position: relative;
+	top: 6.9rem;
+	&__title {
+		font-weight: 700;
+		font-size: 3.2rem;
+	}
+}
+
+.items {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: repeat(3, 1fr);
+	justify-items: center;
+	align-items: center;
+	justify-content: center;
+	align-content: center;
+}
+
+/* Card */
+@import 'card';

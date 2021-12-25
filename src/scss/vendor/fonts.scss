@@ -1,0 +1,18 @@
+// 100 - Thin
+// 200 - ExtraLight
+// 300 - Light
+// 400 - Regular
+// 500 - Medium
+// 600 - SemiBold
+// 700 - Bold
+// 800 - ExtraBold
+// 900 - Black (Heavy)
+
+@mixin font($font_name, $file_name, $weight, $style) {
+	@font-face { font-family: $font_name; font-display: swap; src: url("../../fonts/#{$file_name}.ttf") format("ttf"); font-weight: #{$weight}; font-style: #{$style}; }
+	}
+
+@include font(Inter, Inter-Regular, 400, normal);
+@include font(Inter, Inter-Medium, 500, normal);
+@include font(Inter, Inter-SemiBold, 600, normal);
+@include font(Inter, Inter-Bold, 700, normal);

@@ -1,0 +1,90 @@
+.card {
+  margin-top: 3rem;
+  width: 21rem;
+  height: 26rem;
+  border: 1px solid #f3f3f3;
+  border-radius: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: box-shadow 0.2s linear;
+
+  &__image {
+    width: 13rem;
+    height: 11rem;
+  }
+
+  &__title {
+    font-size: 1.4rem;
+    margin-top: 1.4rem;
+  }
+
+  &__footer {
+    margin-top: 1.4rem;
+    display: flex;
+    justify-content: space-around;
+		line-height: 1.3;
+  }
+
+  &__price {
+    color: #bdbdbd;
+    font-weight: 500;
+    font-size: 1.1rem;
+
+    &__value {
+      color: #000;
+      font-weight: 700;
+      font-size: 1.4rem;
+    }
+  }
+
+  &__button {
+    width: 32px;
+    height: 32px;
+    background: transparent;
+    border: 1px solid #f2f2f2;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s linear;
+
+    &--add {
+      margin-left: 8rem;
+    }
+
+    &--favorite {
+      position: relative;
+      left: -6rem;
+    }
+
+    path {
+      transition: all 0.3s linear;
+    }
+
+    &--add:hover {
+      border: #65dd7b;
+      box-shadow: inset 6.5em -3.25em 1.33em #65dd7b;
+
+      path {
+        fill: #fff;
+      }
+    }
+
+    &--favorite:hover {
+      border: #fef0f0;
+      box-shadow: inset 6.5em -3.25em 1.33em #fef0f0;
+
+      svg,
+      path {
+        fill: #ff8585;
+        stroke: #ff8585;
+      }
+    }
+  }
+
+  &:hover {
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.05);
+  }
+}
