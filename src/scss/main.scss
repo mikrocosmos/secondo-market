@@ -1,22 +1,62 @@
 .content {
-	padding: 4rem;
-	position: relative;
-	top: 6.9rem;
-	&__title {
-		font-weight: 700;
-		font-size: 3.2rem;
-	}
+  padding: 4rem;
+  margin-top: 6.9rem;
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    @include breakpoint(575px) {
+      flex-direction: column;
+      .content__search {
+        margin-top: 3rem;
+      }
+    }
+  }
+  &__title {
+    font-weight: 700;
+    font-size: 3.2rem;
+    @include breakpoint(575px) {
+      display: flex;
+      justify-content: center;
+    }
+  }
+  &__search {
+    border: 1px solid #f3f3f3;
+    display: flex;
+    align-items: center;
+    border-radius: 1rem;
+    padding: 1rem;
+    transition: all 0.2s linear;
+    &__input {
+      color: #aaa;
+      font-size: 1.4rem;
+      margin-left: 1.3rem;
+      &::placeholder {
+        color: #c4c4c4;
+      }
+    }
+  }
 }
 
 .items {
-	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	grid-template-rows: repeat(3, 1fr);
-	justify-items: center;
-	align-items: center;
-	justify-content: center;
-	align-content: center;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  justify-items: center;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  @include breakpoint(950px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @include breakpoint($tablet) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @include breakpoint(575px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
 
 /* Card */
-@import 'card';
+@import "card";
+/* Cart */
+@import "cart";

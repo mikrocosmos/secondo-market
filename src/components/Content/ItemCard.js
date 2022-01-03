@@ -18,7 +18,7 @@ function Card(/*image, title, price*/) {
           />
         </svg>
       </button>
-      <img className="card__image" src="/img/shop/1.jpg" alt="" />
+      <img width={133} height={112} className="card__image" src="/img/shop/1.jpg" alt="" />
       <p className="card__title">Nike Blazer Mid Suede</p>
       <div className="card__footer">
         <div>

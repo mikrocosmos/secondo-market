@@ -1,9 +1,16 @@
 import React from "react";
 
 function HeaderMenu() {
+
+	function openCart() {
+		const cart = document.querySelector('.cart');
+		cart.classList.toggle('active');
+		document.body.classList.toggle('o-hidden');
+	}
+
   return (
     <ul className="header__menu">
-      <li>
+      <li id="open-cart" onClick={openCart}>
         <svg
           width="20"
           height="20"
@@ -35,7 +42,7 @@ function HeaderMenu() {
           />
         </svg>
       </li>
-      <li className="header__menu__price">16.23$</li>
+      <li className="header__menu__price">{600}$</li>
       <li>
         <svg
           width="20"

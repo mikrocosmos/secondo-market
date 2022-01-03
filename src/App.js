@@ -1,12 +1,16 @@
 import React from 'react';
-import Header from './blocks/Header/Header'
-import Content from './blocks/Content/Content'
+import Header from './components/Header/Header'
+import Content from './components/Content/Content'
+import Cart from './components/Content/Cart/Cart'
 
 function App() {
   return (
 		<div className="wrapper">
-			<Header />
-			<Content />
+				<div className="overlay">
+				<Cart />
+				<Header />
+				<Content />
+			</div>
 		</div>
   );
 }
