@@ -36,17 +36,38 @@
         font-size: 1.4rem;
         margin-top: 0.8rem;
       }
+			&__quantity {
+				margin-top: 0.5rem;
+				border: 1px solid #dfdfdf;
+				padding: .2rem .6rem;
+				width: 5rem;
+				height: 2rem;
+				border-radius: 5px;
+				&__increment, &__decrement {
+					margin-left: 1rem;
+					width: 2rem;
+					height: 2rem;
+					color: $gray;
+					background-color: transparent;
+					border: 1px solid #dfdfdf;
+					border-radius: 5px;
+					font-weight: 600;
+					transition: all .2s linear;
+				}
+				&__increment:hover {
+					border: $green;
+					box-shadow: inset 6.5em -3.25em 1.33em $green;
+					color: #fff;
+				}
+				&__decrement:hover {
+					border: $red;
+					box-shadow: inset 6.5em -3.25em 1.33em $red;
+					color: #fff;
+				}
+			}
       &__delete {
-        @include button();
+        @include button($red);
         margin-left: 4.7rem;
-        &:hover {
-          border: #ff4040;
-          box-shadow: inset 6.5em -3.25em 1.33em #ff4040;
-
-          path {
-            fill: #fff;
-          }
-        }
       }
     }
   }

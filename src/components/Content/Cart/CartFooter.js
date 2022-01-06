@@ -4,7 +4,7 @@ function CartFooter() {
 
 	let totalPrice = 600;
 
-  function calcTax(price, percent) {
+  const calcTax = (price, percent) => {
     if (price > 0) {
       let $1Percent = price / 100;
       let total = $1Percent * percent;
@@ -20,12 +20,12 @@ function CartFooter() {
         <li className="cart__footer__text">
           <span>Total:</span>
           <div className="dash"></div>
-          <span className="cart__footer__value">{totalPrice}$</span>
+          <span className="cart__footer__value">${totalPrice}</span>
         </li>
         <li className="cart__footer__text">
           <span>Including Tax 18%:</span>
           <div className="dash"></div>
-          <span className="cart__footer__value">{calcTax(totalPrice, 18)}$</span>
+          <span className="cart__footer__value">${calcTax(totalPrice, 18)}</span>
         </li>
       </ul>
       <button className="cart__footer__btn">

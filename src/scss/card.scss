@@ -9,22 +9,23 @@
   align-items: center;
   justify-content: center;
   transition: all 0.2s linear;
-	cursor: pointer;
+  cursor: pointer;
 
   &__title {
     font-size: 1.4rem;
     margin-top: 1.4rem;
-		text-overflow: ellipsis;
-		overflow: hidden;
-		margin: 1.4rem auto;
-		width: 15rem;
+    text-overflow: ellipsis;
+		white-space: nowrap;
+    overflow: hidden;
+    margin: 1.4rem auto;
+    width: 15rem;
   }
 
   &__footer {
     margin: 1.4rem 0;
     display: flex;
     justify-content: space-around;
-		line-height: 1.3;
+    line-height: 1.3;
   }
 
   &__price {
@@ -40,45 +41,32 @@
   }
 
   &__button {
-		@include button();
-
     &--add {
+      @include button(#65dd7b);
       margin-left: 8rem;
     }
 
     &--favorite {
+      @include button(#fef0f0);
       position: relative;
-			top: 3rem;
+      top: 3rem;
       left: -6rem;
+      &:hover {
+        svg,
+        path {
+          fill: #ff8585;
+          stroke: #ff8585;
+        }
+      }
     }
 
     path {
       transition: all 0.3s linear;
     }
-
-    &--add:hover {
-      border: #65dd7b;
-      box-shadow: inset 6.5em -3.25em 1.33em #65dd7b;
-
-      path {
-        fill: #fff;
-      }
-    }
-
-    &--favorite:hover {
-      border: #fef0f0;
-      box-shadow: inset 6.5em -3.25em 1.33em #fef0f0;
-
-      svg,
-      path {
-        fill: #ff8585;
-        stroke: #ff8585;
-      }
-    }
   }
 
   &:hover {
-		transform: translateY(-5px);
+    transform: translateY(-5px);
     box-shadow: 0 14px 30px rgba(0, 0, 0, 0.05);
   }
 }

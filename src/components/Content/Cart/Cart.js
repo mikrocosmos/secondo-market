@@ -7,8 +7,8 @@ function Cart() {
     <aside className="cart">
       <h2 className="cart__title">Cart</h2>
       <section className="cart__items">
-        <CartCard />
-        <CartCard />
+        <CartCard quantity={1} />
+        <CartCard quantity={2} />
       </section>
 				<CartFooter />
     </aside>

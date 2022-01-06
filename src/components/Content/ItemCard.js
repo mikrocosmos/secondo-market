@@ -1,9 +1,10 @@
 import React from "react";
-// import PropTypes from "prop-types";
+import PropTypes from 'prop-types'
 
-function Card(/*image, title, price*/) {
+function Card(props) {
+
   return (
-    <section className="card">
+    <section className="card" title={props.title}>
       <button className="card__button card__button--favorite">
         <svg
           width="15"
@@ -18,12 +19,12 @@ function Card(/*image, title, price*/) {
           />
         </svg>
       </button>
-      <img width={133} height={112} className="card__image" src="/img/shop/1.jpg" alt="" />
-      <p className="card__title">Nike Blazer Mid Suede</p>
+      <img width={133} height={112} className="card__image" src={props.imgURL} alt={props.title} />
+      <p className="card__title">{props.title}</p>
       <div className="card__footer">
         <div>
           <p className="card__price">Price:</p>
-          <p className="card__price__value">200$</p>
+          <p className="card__price__value">${props.price}</p>
         </div>
         <button className="card__button card__button--add">
           <svg
@@ -44,10 +45,10 @@ function Card(/*image, title, price*/) {
   );
 }
 
-// Card.propTypes = {
-// 	image: PropTypes.string.isRequired,
-// 	title: PropTypes.string.isRequired,
-// 	price: PropTypes.number.isRequired,
-// }
+Card.propTypes = {
+	title: PropTypes.string.isRequired,
+	imgURL: PropTypes.string.isRequired,
+	price: PropTypes.number.isRequired,
+}
 
 export default Card;
