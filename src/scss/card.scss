@@ -51,7 +51,8 @@
       position: relative;
       top: 3rem;
       left: -6rem;
-      &:hover {
+      &:hover,
+			&.active {
         svg,
         path {
           fill: #ff8585;

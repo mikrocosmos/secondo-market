@@ -2,11 +2,11 @@ import React from "react";
 import Logo from './Logo'
 import HeaderMenu from './HeaderMenu'
 
-function Header() {
+function Header(props) {
   return (
     <header className="header">
       <Logo />
-			<HeaderMenu />
+			<HeaderMenu openCart={props.openCart} />
     </header>
   );
 }

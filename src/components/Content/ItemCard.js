@@ -1,11 +1,32 @@
-import React from "react";
-import PropTypes from 'prop-types'
+import React, { useState } from "react";
+import PropTypes from "prop-types";
 
-function Card(props) {
+function Card({ title, imgURL, price, onAddClick, onFavoriteClick }) {
+  const [addedState, setAddedState] = useState(false);
+  const [favoriteState, setFavoriteState] = useState(false);
+
+  const addBtn = ["card__button", "card__button--add"];
+  const addBtnActive = [...addBtn, "active"];
+  const favoriteBtn = ["card__button", "card__button--favorite"];
+  const favoriteBtnActive = [...favoriteBtn, "active"];
+
+  const setAdded = () => {
+    onAddClick({ title, imgURL, price });
+    setAddedState(!addedState);
+  };
+  const setFavorite = () => {
+    onFavoriteClick({ title, imgURL, price });
+    setFavoriteState(!favoriteState);
+  };
 
   return (
-    <section className="card" title={props.title}>
-      <button className="card__button card__button--favorite">
+    <section className="card" title={title}>
+      <button
+        className={
+          favoriteState ? favoriteBtnActive.join(" ") : favoriteBtn.join(" ")
+        }
+        onClick={setFavorite}
+      >
         <svg
           width="15"
           height="15"
@@ -19,14 +40,23 @@ function Card(props) {
           />
         </svg>
       </button>
-      <img width={133} height={112} className="card__image" src={props.imgURL} alt={props.title} />
-      <p className="card__title">{props.title}</p>
+      <img
+        width={133}
+        height={112}
+        className="card__image"
+        src={imgURL}
+        alt={title}
+      />
+      <p className="card__title">{title}</p>
       <div className="card__footer">
         <div>
           <p className="card__price">Price:</p>
-          <p className="card__price__value">${props.price}</p>
+          <p className="card__price__value">${price}</p>
         </div>
-        <button className="card__button card__button--add">
+        <button
+          className={addedState ? addBtnActive.join(" ") : addBtn.join(" ")}
+          onClick={setAdded}
+        >
           <svg
             width="12"
             height="12"
@@ -46,9 +76,9 @@ function Card(props) {
 }
 
 Card.propTypes = {
-	title: PropTypes.string.isRequired,
-	imgURL: PropTypes.string.isRequired,
-	price: PropTypes.number.isRequired,
-}
+  title: PropTypes.string.isRequired,
+  imgURL: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+};
 
 export default Card;

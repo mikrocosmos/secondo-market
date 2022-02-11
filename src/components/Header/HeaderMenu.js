@@ -1,16 +1,10 @@
 import React from "react";
 
-function HeaderMenu() {
-
-	function openCart() {
-		const cart = document.querySelector('.cart');
-		cart.classList.toggle('active');
-		document.body.classList.toggle('o-hidden');
-	}
+function HeaderMenu(props) {
 
   return (
 			<ul className="header__menu">
-				<li id="open-cart" onClick={openCart}>
+				<li id="open-cart" onClick={props.openCart}>
 					<svg
 						width="20"
 						height="20"

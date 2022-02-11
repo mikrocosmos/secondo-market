@@ -1,36 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 
 function CartCard(props) {
+  const [quantity, setQuantity] = useState(1);
+
+  const incrementQuantity = () => {
+    if (quantity < 10) {
+      setQuantity(quantity + 1);
+    }
+  };
+
+  const decrementQuantity = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  };
+
   return (
     <div className="cart__items__item">
       <img
         width={70}
         height={70}
         className="cart__items__item__image"
-        src="/img/shop/2.jpg"
-        alt="Sneakers"
+        src={props.imgURL}
+        alt={props.title}
       />
       <div className="cart__items__item__description">
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <span className="cart__items__item__title">Nike Air Max 270</span>
-          <span className="cart__items__item__price">$300</span>
-          <span>
-            <input
-              className="cart__items__item__quantity"
-              type="number"
-              name="quantity"
-              min={1}
-              max={49}
-							value={props.quantity}
-            ></input>
-            <button className="cart__items__item__quantity__increment" onClick={() => {
-							props.quantity = props.quantity + 1
-						}}>
+          <span className="cart__items__item__title">{props.title}</span>
+          <span className="cart__items__item__price">${props.price * quantity}</span>
+          <span style={{ marginTop: "1rem" }}>
+            <div className="cart__items__item__quantity">{quantity}</div>
+            <button
+              className="cart__items__item__quantity__increment"
+              onClick={incrementQuantity}
+            >
               +
             </button>
-            <button className="cart__items__item__quantity__decrement" onClick={() => {
-							props.quantity = props.quantity - 1
-						}}>
+            <button
+              className="cart__items__item__quantity__decrement"
+              onClick={decrementQuantity}
+            >
               -
             </button>
           </span>

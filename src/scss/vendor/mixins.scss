@@ -14,7 +14,7 @@
   align-items: center;
   justify-content: center;
   transition: all 0.3s linear;
-	&:hover {
+	&:hover, &.active {
 		border: $color;
 		box-shadow: inset 6.5em -3.25em 1.33em $color;
 

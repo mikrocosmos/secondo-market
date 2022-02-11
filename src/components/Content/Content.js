@@ -1,30 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import Card from "./ItemCard";
 
-const sneakersData = [
-  { title: "Nike Blazer Mid Suede", imgURL: "/img/shop/1.jpg", price: 200 },
-  { title: "Nike Air Max 270", imgURL: "/img/shop/2.jpg", price: 200 },
-  { title: "Nike Blazer Mid Suede", imgURL: "/img/shop/3.jpg", price: 100 },
-  {
-    title: "Puma X Aka Boku Future Rider",
-    imgURL: "/img/shop/4.jpg",
-    price: 120,
-  },
-  { title: "Under Armour Curry 8", imgURL: "/img/shop/5.jpg", price: 220 },
-  { title: "Nike Kyrie 7", imgURL: "/img/shop/6.jpg", price: 150 },
-  { title: "Jordan Air Jordan 11", imgURL: "/img/shop/7.jpg", price: 150 },
-  { title: "Nike LeBron XVIII", imgURL: "/img/shop/8.jpg", price: 230 },
-  { title: "Nike LeBron XVIII Low", imgURL: "/img/shop/9.jpg", price: 200 },
-  { title: "Nike Blazer Mid Suede", imgURL: "/img/shop/1.jpg", price: 200 },
-  {
-    title: "Puma X Aka Boku Future Rider",
-    imgURL: "/img/shop/4.jpg",
-    price: 120,
-  },
-  { title: "Nike Kyrie Flytrap IV", imgURL: "/img/shop/10.jpg", price: 300 },
-];
+function Main({ addToCart }) {
+  const [sneakersData, setSneakersData] = useState([]);
 
-function Main() {
+  React.useEffect(() => {
+    fetch("https://61f250832219930017f5047c.mockapi.io/secondo-market")
+      .then((res) => {
+        return res.json();
+      })
+      .then((json) => {
+        setSneakersData(json);
+      });
+  }, []);
+
+
+
   return (
     <main className="content">
       <div class="content__header">
@@ -52,12 +43,14 @@ function Main() {
         </div>
       </div>
       <section className="items">
-        {sneakersData.map((item) => (
-          <Card 
-						title={item.title}
-						imgURL={item.imgURL}
-						price={item.price}
-					/>
+        {sneakersData.map((e) => (
+          <Card
+            title={e.title}
+            imgURL={e.imgURL}
+            price={e.price}
+            onAddClick={(obj) => addToCart(obj)}
+            onFavoriteClick={(obj) => console.log(obj)}
+          />
         ))}
       </section>
     </main>
