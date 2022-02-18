@@ -118,3 +118,18 @@
     overflow: hidden;
   }
 }
+
+.emptycart {
+	margin: auto 4rem;
+	text-align: center;
+	&__title {
+		font-size: 2.2rem;
+		font-weight: 600;
+		margin-top: 2rem;
+	}
+	&__text {
+		font-size: 1.6rem;
+		font-weight: 400;
+		margin-top: 1rem;
+	}
+}

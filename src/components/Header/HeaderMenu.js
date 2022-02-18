@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types'
 
 function HeaderMenu(props) {
 
@@ -71,6 +72,10 @@ function HeaderMenu(props) {
 				</li>
 			</ul>
   );
+}
+
+HeaderMenu.propTypes = {
+	openCart: PropTypes.func.isRequired
 }
 
 export default HeaderMenu;

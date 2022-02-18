@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 
 function CartCard(props) {
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(props.quantity);
 
   const incrementQuantity = () => {
     if (quantity < 10) {
@@ -27,9 +28,11 @@ function CartCard(props) {
       <div className="cart__items__item__description">
         <div style={{ display: "flex", flexDirection: "column" }}>
           <span className="cart__items__item__title">{props.title}</span>
-          <span className="cart__items__item__price">${props.price * quantity}</span>
+          <span className="cart__items__item__price">
+            ${props.price * quantity}
+          </span>
           <span style={{ marginTop: "1rem" }}>
-            <div className="cart__items__item__quantity">{quantity}</div>
+            <div className="cart__items__item__quantity">{props.quantity}</div>
             <button
               className="cart__items__item__quantity__increment"
               onClick={incrementQuantity}
@@ -44,7 +47,7 @@ function CartCard(props) {
             </button>
           </span>
         </div>
-        <button className="cart__items__item__delete">
+        <button onClick={() => props.onRemove(props.id)} className="cart__items__item__delete">
           <svg
             width="10"
             height="10"
@@ -62,5 +65,13 @@ function CartCard(props) {
     </div>
   );
 }
+
+CartCard.propTypes = {
+  key: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  imgURL: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  quantity: PropTypes.number.isRequired,
+};
 
 export default CartCard;

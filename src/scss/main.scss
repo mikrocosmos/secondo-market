@@ -14,6 +14,7 @@
   &__title {
     font-weight: 700;
     font-size: 3.2rem;
+		word-break: break-all;
     @include breakpoint(575px) {
       display: flex;
       justify-content: center;
@@ -24,8 +25,9 @@
     display: flex;
     align-items: center;
     border-radius: 1rem;
-    padding: 1rem;
+    padding: 1rem 3rem;
     transition: all 0.2s linear;
+		position: relative;
     &__input {
       color: #aaa;
       font-size: 1.4rem;
@@ -34,6 +36,14 @@
         color: #c4c4c4;
       }
     }
+		&__clear {
+			cursor: pointer;
+			position: absolute;
+			right: 0;
+			width: 2.5rem;
+			height: 50%;
+			background-color: #fff;
+		}
   }
 }
 

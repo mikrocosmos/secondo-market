@@ -1,25 +1,26 @@
 import React, { useState } from "react";
+import PropTypes from 'prop-types'
+import axios from "axios";
 import Card from "./ItemCard";
 
 function Main({ addToCart }) {
   const [sneakersData, setSneakersData] = useState([]);
+  const [search, setSearch] = useState("");
 
   React.useEffect(() => {
-    fetch("https://61f250832219930017f5047c.mockapi.io/secondo-market")
-      .then((res) => {
-        return res.json();
-      })
-      .then((json) => {
-        setSneakersData(json);
-      });
+    axios
+      .get("https://61f250832219930017f5047c.mockapi.io/secondo-market")
+      .then((res) => setSneakersData(res.data));
   }, []);
 
-
+  const handleSearch = (event) => setSearch(event.target.value);
 
   return (
     <main className="content">
-      <div class="content__header">
-        <h1 className="content__title">All sneakers</h1>
+      <div className="content__header">
+        <h1 className="content__title">
+          {search ? `Searching for "${search}"` : "All sneakers"}
+        </h1>
         <div className="content__search">
           <svg
             width="16"
@@ -36,25 +37,46 @@ function Main({ addToCart }) {
               strokeLinecap="round"
             />
           </svg>
+          {search && (
+            <img
+              onClick={() => setSearch("")}
+              className="content__search__clear"
+              src="/img/svg/delete.svg"
+              alt="Clear"
+            />
+          )}
           <input
             className="content__search__input"
             placeholder="Search..."
+            value={search}
+            maxLength={28}
+            onChange={handleSearch}
           ></input>
         </div>
       </div>
       <section className="items">
-        {sneakersData.map((e) => (
-          <Card
-            title={e.title}
-            imgURL={e.imgURL}
-            price={e.price}
-            onAddClick={(obj) => addToCart(obj)}
-            onFavoriteClick={(obj) => console.log(obj)}
-          />
-        ))}
+        {sneakersData
+          .filter((item) =>
+            item.title.toLowerCase().includes(search.toLowerCase())
+          )
+          .map((e) => (
+            <Card
+              key={e.id}
+              title={e.title}
+              imgURL={e.imgURL}
+              price={e.price}
+							quantity={e.quantity}
+              onAddClick={(obj) => addToCart(obj)}
+              onFavoriteClick={(obj) => console.log(obj)}
+            />
+          ))}
       </section>
     </main>
   );
+}
+
+Main.propTypes = {
+	addToCart: PropTypes.func.isRequired
 }
 
 export default Main;
