@@ -20,6 +20,7 @@ function App() {
     axios.delete(
       `https://61f250832219930017f5047c.mockapi.io/secondo-market-cart/${id}`
     );
+		setCartData((prev => prev.filter((item) => item.id !== id)))
 	}
 
   return (

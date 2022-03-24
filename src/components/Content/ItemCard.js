@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-function Card({ title, imgURL, price, quantity, onAddClick, onFavoriteClick }) {
+function Card({ title, imgURL, price, quantity, onAddClick, onFavoriteClick, id }) {
   const [addedState, setAddedState] = useState(false);
   const [favoriteState, setFavoriteState] = useState(false);
 
@@ -11,11 +11,11 @@ function Card({ title, imgURL, price, quantity, onAddClick, onFavoriteClick }) {
   const favoriteBtnActive = [...favoriteBtn, "active"];
 
   const setAdded = () => {
-    onAddClick({ title, imgURL, price, quantity });
+    onAddClick({ title, imgURL, price, quantity, id });
     setAddedState(!addedState);
   };
   const setFavorite = () => {
-    onFavoriteClick({ title, imgURL, price });
+    onFavoriteClick({ title, imgURL, price, id });
     setFavoriteState(!favoriteState);
   };
 

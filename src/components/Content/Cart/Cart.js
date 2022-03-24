@@ -9,7 +9,7 @@ function Cart({ cartData = [], setCartData, onRemove }) {
   React.useEffect(() => {
     axios
       .get("https://61f250832219930017f5047c.mockapi.io/secondo-market-cart")
-      .then((res) => setCartData(res.data));
+      .then((res) => setCartData(res.data))
   }, [setCartData]);
 
   return (
@@ -19,6 +19,7 @@ function Cart({ cartData = [], setCartData, onRemove }) {
         {cartData.map((obj) => (
           <CartCard
             key={obj.id}
+						id={obj.id}
             title={obj.title}
             imgURL={obj.imgURL}
             price={obj.price}
