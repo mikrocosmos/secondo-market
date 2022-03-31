@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import axios from "axios";
 import CartCard from "./CartCard";
 import CartFooter from "./CartFooter";
-// import EmptyCart from "./EmptyCart";
+import EmptyCart from "./EmptyCart";
 
-function Cart({ cartData = [], setCartData, onRemove }) {
+function Cart({ cartData = [], setCartData, onCartRemove }) {
   React.useEffect(() => {
     axios
       .get("https://61f250832219930017f5047c.mockapi.io/secondo-market-cart")
@@ -14,7 +14,7 @@ function Cart({ cartData = [], setCartData, onRemove }) {
 
   return (
 		<aside className="cart">
-      <h2 className="cart__title">Cart</h2>
+      {cartData.length > 0 ? <aside className="cart"><h2 className="cart__title">Cart</h2>
       <section className="cart__items">
         {cartData.map((obj) => (
           <CartCard
@@ -24,11 +24,11 @@ function Cart({ cartData = [], setCartData, onRemove }) {
             imgURL={obj.imgURL}
             price={obj.price}
             quantity={obj.quantity}
-						onRemove={onRemove}
+						onCartRemove={onCartRemove}
           />
         ))}
       </section>
-      <CartFooter />
+      <CartFooter /></aside> : <EmptyCart />}
     </aside>
   );
 }

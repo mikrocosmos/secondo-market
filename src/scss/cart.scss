@@ -110,7 +110,7 @@
   }
 }
 
-@include breakpoint(575px) {
+@include breakpoint($big-mobile) {
   .cart {
     width: 100%;
   }
@@ -120,7 +120,7 @@
 }
 
 .emptycart {
-	margin: auto 4rem;
+	margin: 16rem 4rem;
 	text-align: center;
 	&__title {
 		font-size: 2.2rem;

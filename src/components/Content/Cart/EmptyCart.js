@@ -1,5 +1,4 @@
 import React from "react";
-import CartFooter from './CartFooter'
 
 function EmptyCart() {
   return (
@@ -18,7 +17,6 @@ function EmptyCart() {
           Please add some items in the cart to check out
         </p>
       </div>
-      <CartFooter />
     </div>
   );
 }

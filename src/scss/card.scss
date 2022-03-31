@@ -15,7 +15,7 @@
     font-size: 1.4rem;
     margin-top: 1.4rem;
     text-overflow: ellipsis;
-		white-space: nowrap;
+    white-space: nowrap;
     overflow: hidden;
     margin: 1.4rem auto;
     width: 15rem;
@@ -52,7 +52,7 @@
       top: 3rem;
       left: -6rem;
       &:hover,
-			&.active {
+      &.active {
         svg,
         path {
           fill: #ff8585;
@@ -70,4 +70,11 @@
     transform: translateY(-5px);
     box-shadow: 0 14px 30px rgba(0, 0, 0, 0.05);
   }
+}
+
+.favorite__delete {
+  @include button($red);
+  position: relative;
+  top: 3rem;
+  left: -6rem;
 }

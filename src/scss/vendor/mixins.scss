@@ -22,6 +22,7 @@
 			fill: #fff;
 		}
 	}
+	@content
 }
 
 @mixin greenButton() {
@@ -41,6 +42,7 @@
   &:active {
     background-color: darken($green, 15%);
   }
+	@content
 }
 
 @mixin greenButton-right() {

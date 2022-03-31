@@ -4,7 +4,7 @@
   &__header {
     display: flex;
     justify-content: space-between;
-    @include breakpoint(575px) {
+    @include breakpoint($big-mobile) {
       flex-direction: column;
       .content__search {
         margin-top: 3rem;
@@ -39,7 +39,7 @@
 		&__clear {
 			cursor: pointer;
 			position: absolute;
-			right: 0;
+			right: 1rem;
 			width: 2.5rem;
 			height: 50%;
 			background-color: #fff;
@@ -61,7 +61,7 @@
   @include breakpoint($tablet) {
     grid-template-columns: repeat(2, 1fr);
   }
-  @include breakpoint(575px) {
+  @include breakpoint($big-mobile) {
     grid-template-columns: repeat(1, 1fr);
   }
 }
@@ -70,3 +70,67 @@
 @import "card";
 /* Cart */
 @import "cart";
+
+.favorite {
+	&__header {
+		display: flex;
+	}
+	&__return {
+		margin: 0 2rem;
+		flex: 0 0 auto;
+		@include button($red)  {
+			&:hover {
+				path {
+					fill: none;
+					stroke: #eee;
+				}
+			}
+		}
+	}
+	&__title {
+		font-weight: 700;
+    font-size: 3.2rem;
+		word-break: break-all;
+    @include breakpoint($big-mobile) {
+      display: flex;
+      justify-content: center;
+    }
+	}
+	&__items {
+		margin-top: 4rem;
+	}
+	&__empty {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin-top: 20vh;
+		&__heading {
+			font-size: 2.4rem;
+			font-weight: 600;
+			margin-top: 2.4rem;
+		}
+		&__text {
+			font-size: 1.6rem;
+			font-weight: 400;
+			margin-top: 1rem;
+			opacity: 0.4;
+			@include breakpoint($mobile){
+				font-size: 1rem;
+			}
+			@include breakpoint($tablet){
+				font-size: 1.4rem;
+			}
+		}
+		&__button {
+			@include greenButton() {
+				&__icon {
+					position: relative;
+					top: 0.2rem;
+					right: 4.5rem;
+				}
+			}
+		}
+	}
+}
+
+@import 'profile';

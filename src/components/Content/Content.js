@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import axios from "axios";
 import Card from "./ItemCard";
 
-function Main({ addToCart }) {
+function Main({ addToCart, addToFavorite }) {
   const [sneakersData, setSneakersData] = useState([]);
   const [search, setSearch] = useState("");
 
@@ -67,7 +67,7 @@ function Main({ addToCart }) {
               price={e.price}
 							quantity={e.quantity}
               onAddClick={(obj) => addToCart(obj)}
-              onFavoriteClick={(obj) => console.log(obj)}
+              onFavoriteClick={(obj) => addToFavorite(obj)}
             />
           ))}
       </section>

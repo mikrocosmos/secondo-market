@@ -47,7 +47,7 @@ function CartCard(props) {
             </button>
           </span>
         </div>
-        <button onClick={() => props.onRemove(props.id)} className="cart__items__item__delete">
+        <button onClick={() => props.onCartRemove(props.id)} className="cart__items__item__delete">
           <svg
             width="10"
             height="10"
