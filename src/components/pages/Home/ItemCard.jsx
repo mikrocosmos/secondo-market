@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-function Card({ title, imgURL, price, quantity, onAddClick, onFavoriteClick, id }) {
+function Card({ title, imgURL, price, quantity, onAddClick, onFavoriteClick, id, favorited = false }) {
   const [addedState, setAddedState] = useState(false);
-  const [favoriteState, setFavoriteState] = useState(false);
+  const [favoriteState, setFavoriteState] = useState(favorited);
 
   const addBtn = ["card__button", "card__button--add"];
   const addBtnActive = [...addBtn, "active"];

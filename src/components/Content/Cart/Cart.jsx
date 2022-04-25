@@ -5,7 +5,7 @@ import CartCard from "./CartCard";
 import CartFooter from "./CartFooter";
 import EmptyCart from "./EmptyCart";
 
-function Cart({ cartData = [], setCartData, onCartRemove }) {
+function Cart({ cartData = [], setCartData, onCartRemove, calcPrice }) {
   React.useEffect(() => {
     axios
       .get("https://61f250832219930017f5047c.mockapi.io/secondo-market-cart")
@@ -28,7 +28,7 @@ function Cart({ cartData = [], setCartData, onCartRemove }) {
           />
         ))}
       </section>
-      <CartFooter /></aside> : <EmptyCart />}
+      <CartFooter calcPrice={calcPrice} /></aside> : <EmptyCart />}
     </aside>
   );
 }

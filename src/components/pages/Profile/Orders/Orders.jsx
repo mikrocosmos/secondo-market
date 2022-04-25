@@ -16,7 +16,7 @@ function Orders() {
           <span className="favorite__empty__text">
             You didn't ordered anything yet.
           </span>
-          <Link to="/">
+          <Link to="/profile">
             <button className="favorite__empty__button">
               <svg
                 width="16"
@@ -41,7 +41,7 @@ function Orders() {
                   strokeLinejoin="round"
                 />
               </svg>
-              Return to the main
+              Return
             </button>
           </Link>
         </div>

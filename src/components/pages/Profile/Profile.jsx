@@ -24,12 +24,12 @@ function Profile() {
             height={120}
           />
         </a>
-        <div class="profile__text">
+        <div className="profile__text">
           <h2 className="profile__name">@mikrocosmos</h2>
-          <div className="profile__description">
+          <textarea className="profile__description" placeholder="Description of your profile.">
             This project created by mikrocosmos.
-						<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum neque a excepturi ab iure blanditiis aliquam libero qui ipsa reiciendis quaerat, aliquid officia dolor recusandae quae! Numquam minus inventore vitae distinctio officiis saepe explicabo, beatae quas. Velit, reprehenderit nam laudantium dolor iure esse, sed quas, possimus ipsum earum maxime culpa.</p>
-          </div>
+						Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+          </textarea>
 					<Link to="/profile/orders">
 						<div className="profile__orders">Orders: <b>17</b></div> 
 					</Link>

@@ -1,7 +1,7 @@
 import React from "react";
 
-function CartFooter() {
-
+function CartFooter(props) {
+	// temporarily
 	let totalPrice = 600;
 
   const calcTax = (price, percent) => {
@@ -28,7 +28,7 @@ function CartFooter() {
           <span className="cart__footer__value">${calcTax(totalPrice, 18)}</span>
         </li>
       </ul>
-      <button className="cart__footer__btn">
+      <button className="cart__footer__btn" onClick={props.calcPrice}>
         Check Out
         <img
           className="cart__footer__btn__icon"

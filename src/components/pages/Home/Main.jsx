@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import PropTypes from 'prop-types'
 import axios from "axios";
-import Card from "./ItemCard";
+import Card from './ItemCard'
+import SlickSlider from '../../Slick/SlickSlider'
 
 function Main({ addToCart, addToFavorite }) {
   const [sneakersData, setSneakersData] = useState([]);
@@ -17,6 +18,7 @@ function Main({ addToCart, addToFavorite }) {
 
   return (
     <main className="content">
+			<SlickSlider />
       <div className="content__header">
         <h1 className="content__title">
           {search ? `Searching for "${search}"` : "All sneakers"}
@@ -62,6 +64,7 @@ function Main({ addToCart, addToFavorite }) {
           .map((e) => (
             <Card
               key={e.id}
+							id={e.id}
               title={e.title}
               imgURL={e.imgURL}
               price={e.price}

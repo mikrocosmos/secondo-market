@@ -1,13 +1,12 @@
 import React from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import FavoriteCard from "./FavoriteCard";
+import FavoriteCard from "./FavoriteCard.jsx";
 
 function Favorite({
   favoriteData = [],
   setFavoriteData,
   onFavoriteRemove,
-  addToCart,
 }) {
   React.useEffect(() => {
     axios
