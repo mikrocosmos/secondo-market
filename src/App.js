@@ -16,15 +16,23 @@ function App() {
   const [totalPrice, setTotalPrice] = useState(0);
   const db = "https://61f250832219930017f5047c.mockapi.io";
 
-  const addToCart = (obj) => {
-    setCartData((prev) => [...prev, obj]);
-    axios.post(`${db}/secondo-market-cart`, obj);
+  const addToCart = async (obj) => {
+    try {
+      if (cartData.find((cartObj) => String(cartObj.id) === String(obj.id))) {
+        onCartRemove(obj.id);
+      } else {
+        const { data } = await axios.post(`${db}/secondo-market-cart`, obj);
+        setCartData((prev) => [...prev, data]);
+      }
+    } catch (error) {
+      alert("Error: cannot add to cart");
+    }
   };
 
   const addToFavorite = async (obj) => {
     try {
       if (favoriteData.find((favObj) => favObj.id === obj.id)) {
-        onFavoriteRemove();
+        onFavoriteRemove(obj.id);
       } else {
         const { data } = await axios.post(`${db}/secondo-market-favorite`, obj);
         setFavoriteData((prev) => [...prev, data]);
@@ -35,11 +43,14 @@ function App() {
   };
 
   const onCartRemove = (id) => {
+    setCartData((prev) =>
+      prev.filter((item) => String(item.id) !== String(id))
+    );
     axios.delete(`${db}/secondo-market-cart/${id}`);
-    setCartData((prev) => prev.filter((item) => item.id !== id));
   };
 
   const onFavoriteRemove = (id) => {
+    setFavoriteData((prev) => prev.filter((item) => item.id !== id));
     axios.delete(`${db}/secondo-market-favorite/${id}`);
   };
 
@@ -65,7 +76,13 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={<Main addToCart={addToCart} addToFavorite={addToFavorite} />}
+          element={
+            <Main
+              cartData={cartData}
+              addToCart={addToCart}
+              addToFavorite={addToFavorite}
+            />
+          }
         />
         <Route
           path="/favorite"

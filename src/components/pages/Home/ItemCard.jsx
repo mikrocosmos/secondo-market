@@ -1,8 +1,18 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-function Card({ title, imgURL, price, quantity, onAddClick, onFavoriteClick, id, favorited = false }) {
-  const [addedState, setAddedState] = useState(false);
+function Card({
+  title,
+  imgURL,
+  price,
+  quantity,
+  onAddClick,
+  onFavoriteClick,
+  id,
+  favorited = false,
+  added = false,
+}) {
+  const [addedState, setAddedState] = useState(added);
   const [favoriteState, setFavoriteState] = useState(favorited);
 
   const addBtn = ["card__button", "card__button--add"];
@@ -79,9 +89,9 @@ Card.propTypes = {
   title: PropTypes.string.isRequired,
   imgURL: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
-	quantity: PropTypes.number.isRequired,
-	onAddClick: PropTypes.func.isRequired,
-	onFavoriteClick: PropTypes.func.isRequired
+  quantity: PropTypes.number.isRequired,
+  onAddClick: PropTypes.func.isRequired,
+  onFavoriteClick: PropTypes.func.isRequired,
 };
 
 export default Card;

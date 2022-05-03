@@ -17,7 +17,7 @@ function CartCard(props) {
   };
 
   return (
-    <div className="cart__items__item">
+    <div key={props.key} className="cart__items__item">
       <img
         width={70}
         height={70}
@@ -68,6 +68,7 @@ function CartCard(props) {
 
 CartCard.propTypes = {
   key: PropTypes.string.isRequired,
+	id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   imgURL: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,

@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import PropTypes from 'prop-types'
 import axios from "axios";
-import Card from './ItemCard'
-import SlickSlider from '../../Slick/SlickSlider'
+import Card from './ItemCard' 
 
-function Main({ addToCart, addToFavorite }) {
+function Main({ cartData, addToCart, addToFavorite }) {
   const [sneakersData, setSneakersData] = useState([]);
   const [search, setSearch] = useState("");
 
@@ -18,7 +17,6 @@ function Main({ addToCart, addToFavorite }) {
 
   return (
     <main className="content">
-			<SlickSlider />
       <div className="content__header">
         <h1 className="content__title">
           {search ? `Searching for "${search}"` : "All sneakers"}
@@ -69,6 +67,7 @@ function Main({ addToCart, addToFavorite }) {
               imgURL={e.imgURL}
               price={e.price}
 							quantity={e.quantity}
+							added={cartData.some(obj => String(obj.id) === String(e.id))}
               onAddClick={(obj) => addToCart(obj)}
               onFavoriteClick={(obj) => addToFavorite(obj)}
             />
