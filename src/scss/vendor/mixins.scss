@@ -42,6 +42,10 @@
   &:active {
     background-color: darken($green, 15%);
   }
+	&:disabled {
+		background-color: #bebebe !important;
+		cursor: not-allowed;
+	}
 	@content
 }
 

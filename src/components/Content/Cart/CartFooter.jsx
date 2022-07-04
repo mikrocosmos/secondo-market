@@ -28,14 +28,6 @@ function CartFooter(props) {
           <span className="cart__footer__value">${calcTax(totalPrice, 18)}</span>
         </li>
       </ul>
-      <button className="cart__footer__btn" onClick={props.calcPrice}>
-        Check Out
-        <img
-          className="cart__footer__btn__icon"
-          src="/img/svg/right-arrow.svg"
-          alt="Check Out"
-        />
-      </button>
     </div>
   );
 }

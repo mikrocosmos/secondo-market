@@ -41,6 +41,8 @@
 
   &__text {
     margin-left: 15rem;
+		display: flex;
+		flex-direction: column;
     @include breakpoint($big-mobile) {
       margin: 4rem 0 0;
     }
@@ -74,8 +76,9 @@
 	}
 
 	&__orders {
+		margin-top: 1rem;
+		width: 9rem;
 		cursor: pointer;
-		display: block;
 		transition: all .2s linear;
 		&:hover {
 			text-decoration: underline;

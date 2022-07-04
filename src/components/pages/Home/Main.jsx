@@ -1,19 +1,25 @@
 import React, { useState } from "react";
-import PropTypes from 'prop-types'
-import axios from "axios";
-import Card from './ItemCard' 
+import PropTypes from "prop-types";
+import Card from "./ItemCard";
 
-function Main({ cartData, addToCart, addToFavorite }) {
-  const [sneakersData, setSneakersData] = useState([]);
+function Main({ sneakersData, cartData, addToCart, addToFavorite, isLoaded }) {
   const [search, setSearch] = useState("");
-
-  React.useEffect(() => {
-    axios
-      .get("https://61f250832219930017f5047c.mockapi.io/secondo-market")
-      .then((res) => setSneakersData(res.data));
-  }, []);
-
   const handleSearch = (event) => setSearch(event.target.value);
+
+  const renderItems = () => {
+    const filteredItems = sneakersData.filter((item) =>
+      item.title.toLowerCase().includes(search.toLowerCase())
+    );
+
+    return (isLoaded ? [...Array(12)] : filteredItems).map((e) => (
+      <Card
+        onAddClick={(obj) => addToCart(obj)}
+        onFavoriteClick={(obj) => addToFavorite(obj)}
+        loading={isLoaded}
+        {...e}
+      />
+    ));
+  };
 
   return (
     <main className="content">
@@ -54,31 +60,13 @@ function Main({ cartData, addToCart, addToFavorite }) {
           ></input>
         </div>
       </div>
-      <section className="items">
-        {sneakersData
-          .filter((item) =>
-            item.title.toLowerCase().includes(search.toLowerCase())
-          )
-          .map((e) => (
-            <Card
-              key={e.id}
-							id={e.id}
-              title={e.title}
-              imgURL={e.imgURL}
-              price={e.price}
-							quantity={e.quantity}
-							added={cartData.some(obj => String(obj.id) === String(e.id))}
-              onAddClick={(obj) => addToCart(obj)}
-              onFavoriteClick={(obj) => addToFavorite(obj)}
-            />
-          ))}
-      </section>
+      <section className="items">{renderItems()}</section>
     </main>
   );
 }
 
 Main.propTypes = {
-	addToCart: PropTypes.func.isRequired
-}
+  addToCart: PropTypes.func.isRequired,
+};
 
 export default Main;

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 function Profile() {
   const github = "https://github.com/mikrocosmos";
@@ -26,13 +26,19 @@ function Profile() {
         </a>
         <div className="profile__text">
           <h2 className="profile__name">@mikrocosmos</h2>
-          <textarea className="profile__description" placeholder="Description of your profile.">
-            This project created by mikrocosmos.
-						Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+          <textarea
+            className="profile__description"
+            placeholder="Description of your profile."
+          >
+            This project created by mikrocosmos. Special thanks to Denis
+            Archakov!
           </textarea>
-					<Link to="/profile/orders">
-						<div className="profile__orders">Orders: <b>17</b></div> 
-					</Link>
+
+          <div className="profile__orders">
+            <Link to="/profile/orders">
+              Orders: <b>17</b>
+            </Link>
+          </div>
         </div>
       </section>
     </main>

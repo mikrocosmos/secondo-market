@@ -9,14 +9,18 @@ import Favorite from "./components/pages/Favorite/Favorite.jsx";
 import Profile from "./components/pages/Profile/Profile.jsx";
 import Orders from "./components/pages/Profile/Orders/Orders.jsx";
 
+export const AppContext = React.createContext({});
+
 function App() {
+  const [sneakersData, setSneakersData] = useState([]);
   const [cart, setCart] = useState(false);
   const [cartData, setCartData] = useState([]);
   const [favoriteData, setFavoriteData] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(true);
   const db = "https://61f250832219930017f5047c.mockapi.io";
 
-  const addToCart = async (obj) => {
+  async function addToCart(obj) {
     try {
       if (cartData.find((cartObj) => String(cartObj.id) === String(obj.id))) {
         onCartRemove(obj.id);
@@ -27,9 +31,9 @@ function App() {
     } catch (error) {
       alert("Error: cannot add to cart");
     }
-  };
+  }
 
-  const addToFavorite = async (obj) => {
+  async function addToFavorite(obj) {
     try {
       if (favoriteData.find((favObj) => favObj.id === obj.id)) {
         onFavoriteRemove(obj.id);
@@ -40,7 +44,7 @@ function App() {
     } catch (error) {
       alert("Error: cannot add to favorite");
     }
-  };
+  }
 
   const onCartRemove = (id) => {
     setCartData((prev) =>
@@ -58,46 +62,74 @@ function App() {
     console.log(cartData);
   };
 
+  React.useEffect(() => {
+    async function fetchData() {
+      setIsLoaded(true);
+      const cartResponse = await axios.get(`${db}/secondo-market-cart`);
+      const favoriteResponse = await axios.get(`${db}/secondo-market-favorite`);
+      const mainResponse = await axios.get(`${db}/secondo-market`);
+
+      setIsLoaded(false);
+      setCartData(cartResponse.data);
+      setFavoriteData(favoriteResponse.data);
+      setSneakersData(mainResponse.data);
+    }
+    fetchData();
+  }, []);
+
+  const checkAdded = (id) => cartData.some((obj) => obj.id === id);
+
   return (
-    <div className="wrapper">
-      {cart && (
-        <Cart
-          cartData={cartData}
-          setCartData={setCartData}
-          onCartRemove={onCartRemove}
-          calcPrice={calcPrice}
+    <AppContext.Provider
+      value={{
+        sneakersData,
+        cartData,
+        favoriteData,
+        checkAdded,
+        setCartData,
+      }}
+    >
+      <div className="wrapper">
+        {cart && (
+          <Cart
+            cartData={cartData}
+            setCartData={setCartData}
+            onCartRemove={onCartRemove}
+            calcPrice={calcPrice}
+          />
+        )}
+        <Header
+          openCart={() => setCart(!cart)}
+          totalPrice={totalPrice}
+          setTotalPrice={setTotalPrice}
         />
-      )}
-      <Header
-        openCart={() => setCart(!cart)}
-        totalPrice={totalPrice}
-        setTotalPrice={setTotalPrice}
-      />
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Main
-              cartData={cartData}
-              addToCart={addToCart}
-              addToFavorite={addToFavorite}
-            />
-          }
-        />
-        <Route
-          path="/favorite"
-          element={
-            <Favorite
-              favoriteData={favoriteData}
-              setFavoriteData={setFavoriteData}
-              onFavoriteRemove={onFavoriteRemove}
-            />
-          }
-        />
-        <Route path="/profile" exact element={<Profile />} />
-        <Route path="/profile/orders" exact element={<Orders />} />
-      </Routes>
-    </div>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Main
+                sneakersData={sneakersData}
+                cartData={cartData}
+                addToCart={addToCart}
+                addToFavorite={addToFavorite}
+                isLoaded={isLoaded}
+              />
+            }
+          />
+          <Route
+            path="/favorite"
+            element={
+              <Favorite
+                setFavoriteData={setFavoriteData}
+                onFavoriteRemove={onFavoriteRemove}
+              />
+            }
+          />
+          <Route path="/profile" exact element={<Profile />} />
+          <Route path="/profile/orders" exact element={<Orders />} />
+        </Routes>
+      </div>
+    </AppContext.Provider>
   );
 }
 

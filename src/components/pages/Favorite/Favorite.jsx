@@ -1,20 +1,10 @@
 import React from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import FavoriteCard from "./FavoriteCard.jsx";
+import { AppContext } from "../../../App";
 
-function Favorite({
-  favoriteData = [],
-  setFavoriteData,
-  onFavoriteRemove,
-}) {
-  React.useEffect(() => {
-    axios
-      .get(
-        "https://61f250832219930017f5047c.mockapi.io/secondo-market-favorite"
-      )
-      .then((res) => setFavoriteData(res.data));
-  });
+function Favorite({ onFavoriteRemove }) { 
+  const { favoriteData } = React.useContext(AppContext);
 
   return (
     <main className="content">
@@ -76,7 +66,7 @@ function Favorite({
                 viewBox="0 0 16 14"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-								className="favorite__empty__button__icon"
+                className="favorite__empty__button__icon"
               >
                 <path
                   d="M14.7144 7L1.00007 7"
