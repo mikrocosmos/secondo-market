@@ -3,18 +3,18 @@ import ContentLoader from "react-content-loader";
 import { AppContext } from "../../../App";
 
 function Card({
+  id, 
   title,
   imgURL,
   price,
-  quantity,
   onAddClick,
   onFavoriteClick,
-  id,
   favorited = false,
-  loading = false, 
+  loading = false,
 }) {
-	const { checkAdded } = React.useContext(AppContext);
+  const { checkAdded, checkFavorite } = React.useContext(AppContext);
   const [favoriteState, setFavoriteState] = useState(favorited);
+	const objType = {id, parentId: id, title, imgURL, price}
 
   const addBtn = ["card__button", "card__button--add"];
   const addBtnActive = [...addBtn, "active"];
@@ -22,10 +22,10 @@ function Card({
   const favoriteBtnActive = [...favoriteBtn, "active"];
 
   const setAdded = () => {
-    onAddClick({ title, imgURL, price, quantity, id });
+    onAddClick(objType);
   };
   const setFavorite = () => {
-    onFavoriteClick({ title, imgURL, price, id });
+    onFavoriteClick(objType);
     setFavoriteState(!favoriteState);
   };
 
@@ -50,7 +50,7 @@ function Card({
         <>
           <button
             className={
-              favoriteState
+              checkFavorite(id)
                 ? favoriteBtnActive.join(" ")
                 : favoriteBtn.join(" ")
             }
@@ -83,7 +83,9 @@ function Card({
               <p className="card__price__value">${price}</p>
             </div>
             <button
-              className={checkAdded(id) ? addBtnActive.join(" ") : addBtn.join(" ")}
+              className={
+                checkAdded(id) ? addBtnActive.join(" ") : addBtn.join(" ")
+              }
               onClick={setAdded}
             >
               <svg

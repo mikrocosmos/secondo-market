@@ -1,14 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { AppContext } from "../../../App";
 
 function Profile() {
-  const github = "https://github.com/mikrocosmos";
+  const { orders } = React.useContext(AppContext);
 
   return (
     <main className="content">
       <h1 className="profile__title">My profile</h1>
       <section className="profile">
-        <a href={github} target="_blank" rel="noreferrer">
+        <a
+          href="https://github.com/mikrocosmos"
+          target="_blank"
+          rel="noreferrer"
+        >
           <img
             className="profile__image"
             src="/img/mikrocosmos.jpg"
@@ -29,14 +34,13 @@ function Profile() {
           <textarea
             className="profile__description"
             placeholder="Description of your profile."
-          >
-            This project created by mikrocosmos. Special thanks to Denis
-            Archakov!
-          </textarea>
-
+            defaultValue={
+              "This project created by mikrocosmos. Special thanks to Dennis Archakov!"
+            }
+          />
           <div className="profile__orders">
             <Link to="/profile/orders">
-              Orders: <b>17</b>
+              Orders: <b>{orders.length}</b>
             </Link>
           </div>
         </div>

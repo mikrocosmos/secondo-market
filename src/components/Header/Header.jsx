@@ -1,21 +1,32 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { AppContext } from "../../App";
 
-function Header(props) {
-  const documentTitle = document.querySelector("title").innerText;
+function Header({ cart, openCart }) {
+  const { calcPrice } = React.useContext(AppContext);
 
   return (
     <header className="header">
-      <Link to="/" className="logo" title={documentTitle}>
-        <img width={40} height={40} src="/img/logo.png" alt={documentTitle} />
+      <Link
+        to="/"
+        className="logo"
+        title="Secondo Market | Men Sneakers shop"
+        onClick={() => openCart(false)}
+      >
+        <img
+          width={40}
+          height={40}
+          src="/img/logo.png"
+          alt="Secondo Market | Men Sneakers shop"
+        />
         <div className="logo__text">
           <h2 className="logo__title">Secondo Market</h2>
           <span className="logo__description">Best sneakers shop</span>
         </div>
       </Link>
       <ul className="header__menu">
-        <li id="open-cart" onClick={props.openCart}>
+        <li id="open-cart" onClick={() => openCart(!cart)}>
           <svg
             width="20"
             height="20"
@@ -47,8 +58,8 @@ function Header(props) {
             />
           </svg>
         </li>
-        <li className="header__menu__price">${0}</li>
-        <Link to="/favorite">
+        <li className="header__menu__price">${calcPrice}</li>
+        <Link to="/favorite" onClick={() => openCart(false)}>
           <li>
             <svg
               width="20"
@@ -65,7 +76,7 @@ function Header(props) {
             </svg>
           </li>
         </Link>
-        <Link to="/profile">
+        <Link to="/profile" onClick={() => openCart(false)}>
           <li>
             <svg
               width="20"

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Card from "./ItemCard";
 
-function Main({ sneakersData, cartData, addToCart, addToFavorite, isLoaded }) {
+function Main({ sneakersData, addToCart, addToFavorite, isLoaded }) {
   const [search, setSearch] = useState("");
   const handleSearch = (event) => setSearch(event.target.value);
 
@@ -11,8 +11,9 @@ function Main({ sneakersData, cartData, addToCart, addToFavorite, isLoaded }) {
       item.title.toLowerCase().includes(search.toLowerCase())
     );
 
-    return (isLoaded ? [...Array(12)] : filteredItems).map((e) => (
+    return (isLoaded ? [...Array(12)] : filteredItems).map((e, index) => (
       <Card
+        key={index}
         onAddClick={(obj) => addToCart(obj)}
         onFavoriteClick={(obj) => addToFavorite(obj)}
         loading={isLoaded}

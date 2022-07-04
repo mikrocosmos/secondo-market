@@ -1,10 +1,47 @@
-import React from 'react';
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
+import { AppContext } from "../../../../App";
+import Card from "../../Home/ItemCard";
 
-function Orders() {
+function Orders({ ordersData }) {
+  const { addToCart, addToFavorite } = React.useContext(AppContext);
   return (
-		<main className="content">
-			<div className="favorite__empty">
+    <main className="content">
+      <div className="favorite__header">
+        <Link to="/profile">
+          <button className="favorite__return">
+            <svg
+              className="favorite__return__image"
+              width="7"
+              height="12"
+              viewBox="0 0 7 12"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M6 11L1 6L6 1"
+                stroke="#C8C8C8"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+        </Link>
+        <h1 className="favorite__title">My orders</h1>
+      </div>
+      {ordersData.length > 0 ? (
+        <section className="items">
+          {ordersData.map((e) => (
+            <Card
+              onAddClick={(obj) => addToCart(obj)}
+              onFavoriteClick={(obj) => addToFavorite(obj)}
+							{...e}
+            />
+          ))}
+        </section>
+      ) : (
+        <div className="favorite__empty">
           <img
             className="favorite__empty__image"
             src="/img/sad.png"
@@ -24,7 +61,7 @@ function Orders() {
                 viewBox="0 0 16 14"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-								className="favorite__empty__button__icon"
+                className="favorite__empty__button__icon"
               >
                 <path
                   d="M14.7144 7L1.00007 7"
@@ -45,8 +82,9 @@ function Orders() {
             </button>
           </Link>
         </div>
-		</main>
-	)
+      )}
+    </main>
+  );
 }
 
 export default Orders;

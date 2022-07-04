@@ -1,45 +1,13 @@
-import React, { useState } from "react";
-import axios from "axios";
-import PropTypes from "prop-types";
+import React from "react";
 
 import CartCard from "./CartCard";
 import CartFooter from "./CartFooter";
 import Info from "../Sidebar/Info";
 
 import { AppContext } from "../../../App";
-
-const delay = () => new Promise((resolve) => setTimeout(resolve, 1000));
-
-function Cart({ onCartRemove, calcPrice }) {
-  const { cartData, setCartData } = React.useContext(AppContext);
-  const [isCompleted, setIsCompleted] = useState(false);
-  const [orderID, setOrderID] = useState(0);
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  const onOrder = async () => {
-    try {
-      setIsLoaded(true);
-      const { data } = await axios.post(
-        "https://61f250832219930017f5047c.mockapi.io/secondo-market-orders",
-        { items: cartData }
-      );
-      setOrderID(data.id);
-      setIsCompleted(true);
-      setCartData([]);
-      for (let i = 0; i < cartData.length; i++) {
-        const item = cartData[i];
-        await axios.delete(
-          "https://61f250832219930017f5047c.mockapi.io/secondo-market-cart/" +
-            item.id
-        );
-				await delay();
-      }
-    } catch (error) {
-      alert("Error: Cannot create an order.");
-    } finally {
-      setIsLoaded(false);
-    }
-  };
+function Cart({ onCartRemove }) {
+  const { cartData, cartLoaded, onOrder, isCompleted, orderID } =
+    React.useContext(AppContext);
 
   return (
     <aside className="cart">
@@ -59,9 +27,9 @@ function Cart({ onCartRemove, calcPrice }) {
               />
             ))}
           </section>
-          <CartFooter calcPrice={calcPrice} />
+          <CartFooter />
           <button
-            disabled={isLoaded}
+            disabled={cartLoaded}
             className="cart__footer__btn"
             onClick={onOrder}
           >
@@ -93,10 +61,5 @@ function Cart({ onCartRemove, calcPrice }) {
     </aside>
   );
 }
-
-Cart.propTypes = {
-  cartData: PropTypes.array.isRequired,
-  setCartData: PropTypes.func.isRequired,
-};
 
 export default Cart;

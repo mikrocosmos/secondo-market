@@ -1,23 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
 function CartCard(props) {
-  const [quantity, setQuantity] = useState(props.quantity);
-
-  const incrementQuantity = () => {
-    if (quantity < 10) {
-      setQuantity(quantity + 1);
-    }
-  };
-
-  const decrementQuantity = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-    }
-  };
-
   return (
-    <div key={props.key} className="cart__items__item">
+    <div className="cart__items__item">
       <img
         width={70}
         height={70}
@@ -29,22 +15,7 @@ function CartCard(props) {
         <div style={{ display: "flex", flexDirection: "column" }}>
           <span className="cart__items__item__title">{props.title}</span>
           <span className="cart__items__item__price">
-            ${props.price * quantity}
-          </span>
-          <span style={{ marginTop: "1rem" }}>
-            <div className="cart__items__item__quantity">{props.quantity}</div>
-            <button
-              className="cart__items__item__quantity__increment"
-              onClick={incrementQuantity}
-            >
-              +
-            </button>
-            <button
-              className="cart__items__item__quantity__decrement"
-              onClick={decrementQuantity}
-            >
-              -
-            </button>
+            ${props.price}
           </span>
         </div>
         <button onClick={() => props.onCartRemove(props.id)} className="cart__items__item__delete">
@@ -67,12 +38,10 @@ function CartCard(props) {
 }
 
 CartCard.propTypes = {
-  key: PropTypes.string.isRequired,
 	id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   imgURL: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
-  quantity: PropTypes.number.isRequired,
 };
 
 export default CartCard;
