@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/secondo-market/static/css/main.325ec361.css",
-    "main.js": "/secondo-market/static/js/main.afc8f7d6.js",
+    "main.js": "/secondo-market/static/js/main.cbcce9c0.js",
     "static/media/Inter-Bold.ttf": "/secondo-market/static/media/Inter-Bold.a73db89c43e44ca8f5e0.ttf",
     "static/media/Inter-SemiBold.ttf": "/secondo-market/static/media/Inter-SemiBold.45b4c2ae493bb481102f.ttf",
     "static/media/Inter-Medium.ttf": "/secondo-market/static/media/Inter-Medium.e7231ba33760832432b8.ttf",
     "static/media/Inter-Regular.ttf": "/secondo-market/static/media/Inter-Regular.2391725004ae05a27e8e.ttf",
     "index.html": "/secondo-market/index.html",
     "main.325ec361.css.map": "/secondo-market/static/css/main.325ec361.css.map",
-    "main.afc8f7d6.js.map": "/secondo-market/static/js/main.afc8f7d6.js.map"
+    "main.cbcce9c0.js.map": "/secondo-market/static/js/main.cbcce9c0.js.map"
   },
   "entrypoints": [
     "static/css/main.325ec361.css",
-    "static/js/main.afc8f7d6.js"
+    "static/js/main.cbcce9c0.js"
   ]
 }
