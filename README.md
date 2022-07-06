@@ -1,6 +1,6 @@
 # Secondo Market - Sneakers shop on React
 
-[Try it on GitHub Pages](https://mikrocosmos.github.io/secondo-market)
+[Try it on GitHub Pages](https://mikrocosmos.github.io/secondo-market/)
 
 **Stack**:
 
