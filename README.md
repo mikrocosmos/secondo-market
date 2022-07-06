@@ -5,7 +5,7 @@
 **Stack**:
 
 - ReactJS
-- hooks: useContext, useState, useEffect
+- hooks: useState, useEffect
 - React Router
 - Axios
 - SCSS
